@@ -38,7 +38,7 @@ settings = get_settings()
 with session_scope() as session:
     profile = get_profile(session)
 
-default_user = (profile.github_username if profile and profile.github_username else None) or settings.github_username or "vaibhav007-star"
+default_user = (profile.github_username if profile and profile.github_username else None) or (settings.github_username if settings.github_username != "your-github-username" else "")
 
 col_sync1, col_sync2 = st.columns((2, 1))
 with col_sync1:

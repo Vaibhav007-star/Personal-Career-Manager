@@ -47,19 +47,19 @@ def test_get_public_profile(mock_get):
     mock_resp.status_code = 200
     mock_resp.headers = {}
     mock_resp.json.return_value = {
-        "login": "vaibhav007-star",
-        "name": "Vaibhav",
+        "login": "sample-dev",
+        "name": "Sample Developer",
         "bio": "Aspiring Data Scientist",
         "public_repos": 15,
         "followers": 10,
-        "html_url": "https://github.com/vaibhav007-star",
+        "html_url": "https://github.com/sample-dev",
         "avatar_url": "https://avatars.githubusercontent.com/u/12345",
     }
     mock_get.return_value = mock_resp
 
     client = GitHubClient()
-    profile = client.get_public_profile("vaibhav007-star")
-    assert profile["login"] == "vaibhav007-star"
+    profile = client.get_public_profile("sample-dev")
+    assert profile["login"] == "sample-dev"
     assert profile["public_repos"] == 15
 
 
@@ -73,9 +73,9 @@ def test_sync_to_database(mock_get, db_session):
         {
             "id": 99901,
             "name": "data-science-project",
-            "full_name": "vaibhav007-star/data-science-project",
+            "full_name": "sample-dev/data-science-project",
             "description": "Customer churn predictor",
-            "html_url": "https://github.com/vaibhav007-star/data-science-project",
+            "html_url": "https://github.com/sample-dev/data-science-project",
             "homepage": None,
             "language": "Python",
             "topics": ["pandas", "scikit-learn"],
@@ -84,13 +84,13 @@ def test_sync_to_database(mock_get, db_session):
             "private": False,
             "fork": False,
             "pushed_at": "2026-03-01T12:00:00Z",
-            "owner": {"login": "vaibhav007-star"},
+            "owner": {"login": "sample-dev"},
         }
     ]
     mock_get.return_value = mock_resp
 
     client = GitHubClient()
-    result = client.sync_to_database(db_session, "vaibhav007-star", fetch_readmes=False)
+    result = client.sync_to_database(db_session, "sample-dev", fetch_readmes=False)
     assert result["synced"] == 1
 
     repo = db_session.query(GithubRepository).filter_by(github_id=99901).first()

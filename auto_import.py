@@ -3,7 +3,7 @@
 Quickly populates your Career Management System directly from the command line:
     python auto_import.py path/to/resume.pdf
     python auto_import.py path/to/skills.csv
-    python auto_import.py --github vaibhav007-star
+    python auto_import.py --github your-github-username
 """
 
 from __future__ import annotations
@@ -70,7 +70,7 @@ def auto_import_file(file_path: Path) -> None:
                 "full_name": prof["full_name"],
                 "email": prof.get("email"),
                 "phone": prof.get("phone"),
-                "github_username": prof.get("github_username") or "vaibhav007-star",
+                "github_username": prof.get("github_username") or "",
                 "github_url": prof.get("github_url"),
                 "linkedin_url": prof.get("linkedin_url"),
             })
@@ -145,4 +145,4 @@ if __name__ == "__main__":
     else:
         print("Usage:")
         print("  python auto_import.py path/to/my_resume.pdf")
-        print("  python auto_import.py --github vaibhav007-star")
+        print("  python auto_import.py --github your-github-username")

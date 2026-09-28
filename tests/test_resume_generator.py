@@ -10,11 +10,11 @@ from services.resume_generator import ResumeGenerator
 
 def test_resume_generation_docx_and_pdf():
     profile = Profile(
-        full_name="Vaibhav",
+        full_name="Alex Rivera",
         headline="Aspiring Data Scientist",
-        email="vaibhav@example.com",
+        email="alex@example.com",
         phone="+91 9876543210",
-        github_url="https://github.com/vaibhav007-star",
+        github_url="https://github.com/demo-user",
         summary="Passionate about building data science applications and machine learning models.",
     )
     skill1 = Skill(name="Python", category="technical", verified=True)
@@ -25,7 +25,7 @@ def test_resume_generation_docx_and_pdf():
         title="Predictive Sales Analysis",
         description="Built predictive model achieving 88% precision.",
         outcomes="Identified top 3 revenue leakages.",
-        github_url="https://github.com/vaibhav007-star/sales",
+        github_url="https://github.com/demo-user/sales",
         is_public=True,
     )
 
@@ -43,7 +43,7 @@ def test_resume_generation_docx_and_pdf():
     assert len(docx_bytes) > 1000
     doc = Document(io.BytesIO(docx_bytes))
     full_doc_text = "\n".join(p.text for p in doc.paragraphs)
-    assert "Vaibhav" in full_doc_text
+    assert "Alex Rivera" in full_doc_text
     assert "Predictive Sales Analysis" in full_doc_text
     assert "Python" in full_doc_text
 
@@ -52,17 +52,17 @@ def test_resume_generation_docx_and_pdf():
     reader = PdfReader(io.BytesIO(pdf_bytes))
     assert len(reader.pages) >= 1
     pdf_text = "".join(page.extract_text() for page in reader.pages)
-    assert "Vaibhav" in pdf_text
+    assert "Alex Rivera" in pdf_text
     assert "Predictive Sales Analysis" in pdf_text
 
 
 def test_public_portfolio_redaction():
     profile = Profile(
-        full_name="Vaibhav",
+        full_name="Alex Rivera",
         headline="Aspiring Data Scientist",
         email="private.email@example.com",
         phone="+91 9876543210",
-        github_url="https://github.com/vaibhav007-star",
+        github_url="https://github.com/demo-user",
         include_email_in_public_export=False,
     )
     skill = Skill(name="Python", verified=True)
@@ -80,5 +80,5 @@ def test_public_portfolio_redaction():
     md = generator.generate_public_portfolio_markdown()
     assert "+91 9876543210" not in md
     assert "private.email@example.com" not in md
-    assert "vaibhav007-star" in md
+    assert "demo-user" in md
     assert "Public Portfolio Project" in md

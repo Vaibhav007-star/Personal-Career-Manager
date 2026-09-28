@@ -21,7 +21,7 @@ st.markdown(
     """
     <div class="pcm-hero">
       <h1>Personal Career Management System</h1>
-      <p>Phase 1 — local SQLite, dashboard, profile, and projects. Bound to 127.0.0.1. No cloud uploads.</p>
+      <p>Local-first career & placement platform tailored for 6-month internship and placement prep in <b>Data Science, Data Analytics, and AI</b>.</p>
     </div>
     """,
     unsafe_allow_html=True,
@@ -34,8 +34,8 @@ with session_scope() as session:
 name = profile.full_name if profile else "Add your profile to get started"
 st.subheader(name)
 if profile and profile.is_sample:
-    st.warning(
-        "A fictional sample profile is loaded. It is not real. Remove it in Settings before treating data as yours."
+    st.info(
+        "🧪 Demonstration sample profile loaded. Explore the dashboard, skills, and resume generator, or clear it in Settings."
     )
 if profile and profile.headline:
     st.caption(profile.headline)
@@ -44,31 +44,35 @@ c1, c2, c3, c4 = st.columns(4)
 c1.metric("Projects", counts["projects"])
 c2.metric("Skills", counts["skills"])
 c3.metric("Applications", counts["applications"])
-c4.metric("Open tasks", counts["tasks_open"])
+c4.metric("Open Tasks", counts["tasks_open"])
 
-st.markdown("### What you can do now")
-col_a, col_b, col_c = st.columns(3)
-with col_a:
-    st.page_link("pages/1_Dashboard.py", label="Open dashboard", icon="📊")
-with col_b:
-    st.page_link("pages/2_Profile.py", label="Edit profile", icon="👤")
-with col_c:
-    st.page_link("pages/3_Projects.py", label="Manage projects", icon="📁")
+st.markdown("### Quick Navigation")
+r1_c1, r1_c2, r1_c3 = st.columns(3)
+with r1_c1:
+    st.page_link("pages/1_Dashboard.py", label="Comprehensive Dashboard", icon="📊")
+    st.page_link("pages/2_Profile.py", label="Profile Management", icon="👤")
+    st.page_link("pages/3_Projects.py", label="Project Portfolio", icon="📁")
 
-st.markdown("### Coming in later phases (not implemented yet)")
-st.markdown(
-    "- GitHub REST importer for `vaibhav007-star` (public first; private only with a read-only token you opt into)\n"
-    "- Document import (PDF/DOCX/CSV/XLSX/Markdown) with a review screen\n"
-    "- Internship tracker, skill-gap analysis, resume/PDF generator, encrypted backups"
-)
+with r1_c2:
+    st.page_link("pages/4_Skills.py", label="Skills Catalog & Verification", icon="💡")
+    st.page_link("pages/5_Education_Experience.py", label="Education & Credentials", icon="🎓")
+    st.page_link("pages/6_GitHub_Sync.py", label="GitHub Repository Sync", icon="🐙")
+
+with r1_c3:
+    st.page_link("pages/7_Document_Import.py", label="Document Import Center", icon="📥")
+    st.page_link("pages/8_Placement_Tracker.py", label="Placement & Skill-Gap", icon="🎯")
+    st.page_link("pages/9_Resume_Portfolio.py", label="ATS Resume & Portfolio", icon="📄")
+
+st.markdown("---")
+st.page_link("pages/10_Settings.py", label="Security, Sample Data & Encrypted Backups", icon="⚙️")
 
 st.info(
-    f"Server bind: `{settings.bind_host}:{settings.port}`. "
-    "Local files are not encrypted in Phase 1. Anyone with access to this Windows account can read `data/career.db`."
+    f"🔒 Bound strictly to `{settings.bind_host}:{settings.port}`. "
+    "All records and backups remain local. Use encrypted backups in Settings to protect your data."
 )
 
 if counts["projects"] == 0 and not profile:
     empty_state(
         "Empty workspace",
-        "Use Profile to add your name, then add projects. Optional fictional samples can be loaded from Settings.",
+        "Use Profile to set up your profile, or load fictional sample data in Settings to explore.",
     )

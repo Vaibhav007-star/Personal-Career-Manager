@@ -13,11 +13,11 @@ def test_unsupported_file_extension():
 
 
 def test_markdown_resume_parser():
-    md_content = """# Vaibhav Kumar
-Email: vaibhav@example.com
+    md_content = """# Alex Rivera
+Email: alex@example.com
 Phone: (555) 123-4567
-GitHub: https://github.com/vaibhav007-star
-LinkedIn: https://linkedin.com/in/vaibhav-star
+GitHub: https://github.com/demo-user
+LinkedIn: https://linkedin.com/in/alex-rivera
 
 ## Skills
 Proficient in Python, SQL, Pandas, Power BI, Excel, and Machine Learning.
@@ -40,9 +40,9 @@ Coursera Data Science Specialization
     parser = DocumentParser("resume.md", md_content.encode("utf-8"))
     res = parser.parse()
 
-    assert res["profile"]["full_name"] == "# Vaibhav Kumar"
-    assert res["profile"]["email"] == "vaibhav@example.com"
-    assert res["profile"]["github_username"] == "vaibhav007-star"
+    assert res["profile"]["full_name"] == "# Alex Rivera"
+    assert res["profile"]["email"] == "alex@example.com"
+    assert res["profile"]["github_username"] == "demo-user"
     
     skill_names = [s["name"] for s in res["skills"]]
     assert "Python" in skill_names
@@ -72,7 +72,7 @@ Beta Analytics,AI Research Intern,wishlist,2026-11-15
 
 def test_docx_parser():
     doc = Document()
-    doc.add_paragraph("Vaibhav K")
+    doc.add_paragraph("Alex Rivera")
     doc.add_paragraph("Email: user@example.com")
     doc.add_paragraph("Skills: Python, Streamlit, PostgreSQL")
     bio = io.BytesIO()

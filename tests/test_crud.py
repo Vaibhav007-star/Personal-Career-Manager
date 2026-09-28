@@ -22,13 +22,13 @@ def test_profile_requires_name(db_session):
 
 
 def test_profile_upsert(db_session):
-    first = upsert_profile(db_session, {"full_name": "Vaibhav", "email": "you@example.com"})
-    second = upsert_profile(db_session, {"full_name": "Vaibhav K", "github_username": "vaibhav007-star"})
+    first = upsert_profile(db_session, {"full_name": "Alex", "email": "you@example.com"})
+    second = upsert_profile(db_session, {"full_name": "Alex Rivera", "github_username": "demo-user"})
     assert first.id == second.id
     profile = get_profile(db_session)
     assert profile is not None
-    assert profile.full_name == "Vaibhav K"
-    assert profile.github_username == "vaibhav007-star"
+    assert profile.full_name == "Alex Rivera"
+    assert profile.github_username == "demo-user"
     assert profile.email == "you@example.com"
 
 
@@ -44,7 +44,7 @@ def test_project_crud_and_skills(db_session):
             "title": "Churn analysis",
             "description": "Internal practice project",
             "status": "in_progress",
-            "github_url": "https://github.com/vaibhav007-star/example",
+            "github_url": "https://github.com/demo-user/example",
         },
         skill_names=["Python", "SQL"],
     )

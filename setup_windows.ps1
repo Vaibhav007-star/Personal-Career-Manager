@@ -1,4 +1,4 @@
-# Personal Career Management System — Windows setup (Phase 1)
+# Personal Career Management System — Windows setup
 # Run from PowerShell. Execution policy: if blocked, use:
 #   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 

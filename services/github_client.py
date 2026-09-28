@@ -1,6 +1,6 @@
 """GitHub REST API Client for Personal Career Management System.
 
-Supports public profile and repository synchronization for vaibhav007-star.
+Supports public profile and repository synchronization.
 Supports optional authenticated access to private repositories with explicit consent.
 Handles rate limits, pagination, and token isolation. Tokens are never logged or stored.
 """

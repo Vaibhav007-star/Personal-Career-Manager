@@ -70,7 +70,7 @@ def get_settings() -> Settings:
         bind_host=host,
         port=port,
         database_url=_resolve_database_url(os.environ.get("DATABASE_URL", "")),
-        github_username=os.environ.get("GITHUB_USERNAME", "vaibhav007-star").strip(),
+        github_username=os.environ.get("GITHUB_USERNAME", "your-github-username").strip(),
         log_level=os.environ.get("LOG_LEVEL", "INFO").strip().upper(),
         max_upload_mb=int(os.environ.get("MAX_UPLOAD_MB", "10")),
         has_github_token=bool(os.environ.get("GITHUB_TOKEN", "").strip()),
