@@ -20,6 +20,7 @@ def get_session_factory() -> sessionmaker:
             autoflush=False,
             autocommit=False,
             future=True,
+            expire_on_commit=False,
         )
     return _session_factory
 
@@ -31,6 +32,7 @@ def configure_session(engine) -> None:
         autoflush=False,
         autocommit=False,
         future=True,
+        expire_on_commit=False,
     )
 
 

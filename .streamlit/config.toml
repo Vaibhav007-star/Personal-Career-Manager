@@ -2,7 +2,7 @@
 address = "127.0.0.1"
 port = 8501
 headless = false
-enableCORS = false
+enableCORS = true
 enableXsrfProtection = true
 maxUploadSize = 10
 fileWatcherType = "auto"
